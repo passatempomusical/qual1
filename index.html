@@ -4,161 +4,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qual é a Música? Clique abaixo, ouça e responda!</title>
+    <title>Passatempo Musical</title>
     <link rel="stylesheet" href="style.css"> <!-- Vinculando o arquivo CSS -->
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            /*background: linear-gradient(120deg, #1e3c72, #2a5298);*/
+            color: black;
+            height: 100vh;
+            /*display: flex;*/
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    /*background: linear-gradient(120deg, #1e3c72, #2a5298);*/
-    color: black;
-    height: 100vh;
-    /*display: flex;*/
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0;
-}
-
-/* Estilo para o contêiner de áudio */
-#audio-container {
-    position: relative;
-    width: 70%;
-    /* Ajuste conforme necessário */
-    margin: 20px auto;
-}
+        /* Estilo para o contêiner de áudio */
+        #audio-container {
+            position: relative;
+            width: 70%;
+            /* Ajuste conforme necessário */
+            margin: 20px auto;
+        }
 
 
-/* Remover bordas padrão do player */
-audio {
-    width: 100%;
-    border-radius: 10px;
-    /* Arredonda as bordas do player */
-    outline: none;
-    /* Remove o contorno */
-}
+        /* Remover bordas padrão do player */
+        audio {
+            width: 100%;
+            border-radius: 10px;
+            /* Arredonda as bordas do player */
+            outline: none;
+            /* Remove o contorno */
+        }
 
-/* Personalizar o botão de reprodução */
-audio::-webkit-media-controls-play-button {
-    background-color: darkorange;
-    /* Cor do botão de play */
-    border-radius: 50%;
-}
+        /* Personalizar o botão de reprodução */
+        audio::-webkit-media-controls-play-button {
+            background-color: darkorange;
+            /* Cor do botão de play */
+            border-radius: 50%;
+        }
 
-audio::-webkit-media-controls-volume-slider {
-    background-color: #64b5f6;
-    /* Cor do controle de volume */
-}
+        audio::-webkit-media-controls-volume-slider {
+            background-color: #64b5f6;
+            /* Cor do controle de volume */
+        }
 
-h1 {
-    margin-bottom: 20px;
-}
+        h1 {
+            margin-bottom: 20px;
+        }
 
-#options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    /* Adiciona um espaçamento entre os botões */
-}
+        #options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            /* Adiciona um espaçamento entre os botões */
+        }
 
-#options button {
-    display: block;
-    width: 95%;
-    /* Ajuste a largura conforme o tamanho da tela */
-    margin: 15px 5px;
-    padding: 5px;
-    font-size: 18px;
-    background-color: #3b0506;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        #options button {
+            display: block;
+            width: 95%;
+            /* Ajuste a largura conforme o tamanho da tela */
+            margin: 15px 5px;
+            padding: 5px;
+            font-size: 18px;
+            background-color: #3b0506;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-/* Estilo para botões de resposta correta/errada */
-button.correct {
-    background: #4caf50;
-    color: white;
-}
+        /* Estilo para botões de resposta correta/errada */
+        button.correct {
+            background: #4caf50;
+            color: white;
+        }
 
-button.wrong {
-    background: #d32f2f;
-    color: white;
-}
+        button.wrong {
+            background: #d32f2f;
+            color: white;
+        }
 
-#score {
-    margin-top: 15px;
-    font-size: 18px;
-}
+        #score {
+            margin-top: 15px;
+            font-size: 18px;
+        }
 
-#final-screen {
-    text-align: left;
-    /* Alinha o texto à esquerda */
-    padding: 20px;
-}
+        #final-screen {
+            text-align: left;
+            /* Alinha o texto à esquerda */
+            padding: 20px;
+        }
 
-#final-screen h1 {
-    color: red;
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-}
+        #final-screen h1 {
+            color: red;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-button {
-    padding: 10px 20px;
-    font-size: 22px;
-    margin: 10px;
-    background: #3b0506;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
+        button {
+            padding: 10px 20px;
+            font-size: 22px;
+            margin: 10px;
+            background: #3b0506;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-button:hover {
-    background-color: #210202;
-    /* Cor de destaque quando o mouse passa */
-}
+        button:hover {
+            background-color: #210202;
+            /* Cor de destaque quando o mouse passa */
+        }
 
-.comment-block {
-    background-color: #f9f9f9;
-    /* Cor de fundo suave */
-    border-left: 5px solid #007bff;
-    /* Barra lateral para destaque */
-    padding: 15px;
-    margin: 15px 0;
-    font-size: 16px;
-    color: #333;
-    /* Cor do texto */
-    text-align: left;
-    /* Alinhamento do texto */
-    font-family: Arial, sans-serif;
-    border-radius: 5px;
-    /* Bordas arredondadas */
-}
+        .comment-block {
+            background-color: #f9f9f9;
+            /* Cor de fundo suave */
+            border-left: 5px solid #007bff;
+            /* Barra lateral para destaque */
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 16px;
+            color: #333;
+            /* Cor do texto */
+            text-align: left;
+            /* Alinhamento do texto */
+            font-family: Arial, sans-serif;
+            border-radius: 5px;
+            /* Bordas arredondadas */
+        }
 
-/* Se quiser personalizar o título dentro do bloco */
-.comment-block h3 {
-    font-size: 18px;
-    color: #007bff;
-    margin-bottom: 10px;
-}
+        /* Se quiser personalizar o título dentro do bloco */
+        .comment-block h3 {
+            font-size: 18px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
 
-/* Se quiser personalizar os parágrafos dentro do bloco */
-.comment-block p {
-    margin: 5px 0;
-}
+        /* Se quiser personalizar os parágrafos dentro do bloco */
+        .comment-block p {
+            margin: 5px 0;
+        }
 
-/* Adicionando uma versão escura como opção */
-.comment-block.dark {
-    background-color: #333;
-    color: #fff;
-    border-left-color: #ffcc00;
-}
+        /* Adicionando uma versão escura como opção */
+        .comment-block.dark {
+            background-color: #333;
+            color: #fff;
+            border-left-color: #ffcc00;
+        }
     </style>
 
 
@@ -174,8 +173,9 @@ button:hover {
                 Seu navegador não suporta o elemento de áudio.
             </audio>
         </div>
+        <p id="score" style="font-size: 12px; color: #3b0506; text-align: left; padding-left: 10px;">Pontuação: 0</p>
         <div id="options"></div>
-        <p id="score">Pontuação: 0</p>
+
         <p id="music-comment" style="font-style: italic; margin-top: 20px;"></p> <!-- Comentário da música -->
     </div>
 
@@ -348,7 +348,7 @@ button:hover {
                 const q = questions[currentQuestionIndex];
                 audio.src = q.song;
                 audio.src = q.song;
-                questionText.innerHTML = "Ouça, responda e ganhe pontos!<br><strong style='color: red;'>▼ Clique no play para começar!<br></strong>";
+                questionText.innerHTML = "Ouça, responda e ganhe pontos!<br><strong style='color: red;'>▼<br></strong>";
                 optionsContainer.innerHTML = "";
 
                 q.options.forEach((option) => {
@@ -439,7 +439,7 @@ button:hover {
             scoreText.textContent = `Pontuação: ${score}`; // Exibe a pontuação ao iniciar
             loadQuestion();
         });
-        </script>
+    </script>
 
 </body>
 
