@@ -6,55 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passatempo Musical</title>
 
-<style>
+    <style>
+        #banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f5f5f3;
+            z-index: 1000;
+            text-align: center;
+            padding: 5px 0;
 
-#banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f5f5f3;
-    z-index: 1000;
-    text-align: center;
-    padding: 5px 0;
-    
-}
+        }
 
-#banner img {
-    max-width: 100%;
-    height: auto;
-}
+        #banner img {
+            max-width: 100%;
+            height: auto;
+        }
 
-#game {
-    margin-top: 80px;
-}
+        #game {
+            margin-top: 30px;
+        }
 
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             /*background: linear-gradient(120deg, #1e3c72, #2a5298);*/
             color: black;
-            
+
             /*display: flex;*/
             justify-content: center;
             align-items: center;
             flex-direction: column;
             margin: 0;
-            padding-top: 80px; /* ou a altura real do seu anúncio fixo */
+            padding-top: 80px;
+            /* ou a altura real do seu anúncio fixo */
         }
 
-#propaganda-container{
+        #propaganda-container {
             min-width: 100px;
             background-color: #0c16a1;
-            
+
         }
 
         h1 {
-    font-size: 25px;
-    color: #310505;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+            font-size: 25px;
+            color: #310505;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
 
         /* Estilo para o contêiner de áudio */
@@ -87,7 +87,7 @@
             /* Cor do controle de volume */
         }
 
-     
+
         #options {
             display: flex;
             flex-direction: column;
@@ -124,7 +124,7 @@
 
         #score {
             font-size: 12px;
-            color: #3b0506;
+            color: #ee1418;
             text-align: left;
             padding-left: 10px;
 
@@ -207,40 +207,61 @@
         }
 
         @media (max-width: 600px) {
-    #audio-container, .description {
-        width: 95%;
-    }
 
-    #options button {
-        font-size: 16px;
-    }
-}
+            #audio-container,
+            .description {
+                width: 95%;
+            }
 
+            #options button {
+                font-size: 16px;
+            }
+        }
     </style>
 
 
 </head>
 
 <body>
-    
-        <div id="banner">
+
+    <div id="banner">
         <a href="https://sites.google.com/view/palavraeacao/qualehamusica" target="_blank">
             <img id="bannerImg" src="banner1.jpg" alt="Banner Publicitário">
         </a>
-        </div>
+    </div>
 
-        <div id="game" style="margin-top: 80px;">
+    <div id="game">
 
-        
+
         <h1>Qual é a Música?</h1>
         <p id="question">Clique no play e responda Qual é a Música</p>
         <div id="audio-container">
-            <audio id="audio" controls>
+            <audio id="audio" controls preload="metadata">
+
                 <source src="audio/musica.mp3" type="audio/mpeg">
                 Seu navegador não suporta o elemento de áudio.
             </audio>
-        </div>
-        <p id="score">Pontuação: 0</p>
+
+            <table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 300px; margin: 0 auto;
+                          font-family: Arial, sans-serif; font-size: 14px; background-color: #f9f9f9; color: #333;">
+                <tr>
+                    <td rowspan="2" style="text-align: center; vertical-align: middle; background-color: #eee;">
+                        <img id="fotoUsuario" src="https://passatempomusical.github.io/qual1/foto1.png" alt="Foto do Usuário"
+                             width="50" style="border-radius: 50%; border: 2px solid #e6e3e3;" />
+                    </td>
+                    <td id="nomeUsuario" style="padding: 10px; text-align: left; font-size: 12px;">
+                        <strong></strong> Nome do Jogador
+                    </td>
+                </tr>
+                <tr>
+                    <td id="score" style="padding: 10px;">
+                        <strong>Pontuação:</strong> 0
+                    </td>
+                </tr>
+            </table>
+
+    </div>
+
         <div id="options"></div>
 
         <p id="music-comment" style="font-style: italic; margin-top: 20px;"></p> <!-- Comentário da música -->
@@ -500,40 +521,36 @@
 
             scoreText.textContent = `Pontuação: ${score}`; // Exibe a pontuação ao iniciar
             loadQuestion();
-       
-            
 
+            const banners = [
+                "banner1.jpg",
+                "banner2.jpg",
+                "banner3.jpg",
+                "banner4.jpg",
+                "banner5.jpg"
+            ];
 
+            let shuffledBanners = [];
+            let currentIndex = 0;
 
-                    const banners = [
-                        "banner1.jpg",
-                        "banner2.jpg",
-                        "banner3.jpg",
-                        "banner4.jpg",
-                        "banner5.jpg"
-                    ];
+            function shuffleArray(array) {
+                return array.sort(() => Math.random() - 0.5);
+            }
 
-                    let shuffledBanners = [];
-                    let currentIndex = 0;
+            function updateBanner() {
+                if (currentIndex >= shuffledBanners.length) {
+                    shuffledBanners = shuffleArray([...banners]); // Reembaralha quando todos forem exibidos
+                    currentIndex = 0;
+                }
 
-                    function shuffleArray(array) {
-                        return array.sort(() => Math.random() - 0.5);
-                    }
+                document.getElementById("bannerImg").src =
+                    "https://passatempomusical.github.io/qual1/" + shuffledBanners[currentIndex];
 
-                    function updateBanner() {
-                        if (currentIndex >= shuffledBanners.length) {
-                            shuffledBanners = shuffleArray([...banners]); // Reembaralha quando todos forem exibidos
-                            currentIndex = 0;
-                        }
+                currentIndex++;
+            }
 
-                        document.getElementById("bannerImg").src =
-                            "https://passatempomusical.github.io/qual1/" + shuffledBanners[currentIndex];
-
-                        currentIndex++;
-                    }
-
-                    // Inicia os banners
-                    updateBanner();
+            // Inicia os banners
+            updateBanner();
         });
     </script>
 
